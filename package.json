@@ -1,0 +1,15 @@
+{
+  "name": "eindopdracht6_tdd_groentetuin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "groenteformules.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}

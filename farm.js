@@ -14,10 +14,16 @@ const costsPerPlant = 1;
 const getCostsForCrop = (crops) => crops.numCrops * costsPerPlant;
 
 // bereken inkomsten voor een crop (zonder omgevingsfactoren): getRevenueForCrop
+const salesPrice = 2;
 
-
+const getRevenueForCrop = (crops) => {
+    const cropYield = getYieldForCrop(crops);
+    return cropYield * salesPrice;
+};
 
 // bereken de winst voor een crop (zonder omgevingsfactoren): getProfitForCrop
+
+
 // bereken de winst voor meerdere crops (zonder omgevingsfactoren): getTotalProfit
 // Implementeer de hierop volgende functionaliteiten door je eerder geschreven 
 // functies aan te passen. Schrijf dus geen nieuwe functies. 
@@ -33,6 +39,7 @@ module.exports = {
     getYieldForCrop,
     getTotalYield,
     getCostsForCrop,
+    getRevenueForCrop,
 }
 
 

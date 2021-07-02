@@ -258,3 +258,96 @@ describe("getYieldForCrob considering factors", () => {
     expect(getYieldForCrop(input, environmentFactors)).toBe(150);
   });
 });
+
+describe("getTotalYield considering enviromentFactors", () => {
+  test("getTotalYield considering one factor", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+    const pumpkin = {
+      name: "pumpkin",
+      yield: 4,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+    const crops = [
+      { crop: corn, numCrops: 5 },
+      { crop: pumpkin, numCrops: 2 },
+    ];
+
+    const environmentFactors = {
+      sun: "low",
+    };
+
+    expect(getTotalYield({ crops }, environmentFactors)).toBe(11.5);
+  });
+
+  test("getTotalYield considering more factors", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+    const pumpkin = {
+      name: "pumpkin",
+      yield: 4,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+    const crops = [
+      { crop: corn, numCrops: 5 },
+      { crop: pumpkin, numCrops: 2 },
+    ];
+
+    const environmentFactors = {
+      sun: "low",
+      wind: "high",
+    };
+
+    expect(getTotalYield({ crops }, environmentFactors)).toBe(4.6);
+  });
+});

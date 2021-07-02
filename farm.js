@@ -43,15 +43,12 @@ const getTotalYield = (input, factors) => {
   const crops = input.crops;
   const cropsYield = crops.map((crop) => getYieldForCrop(crop, factors));
   return cropsYield.reduce((acc, cur) => acc + cur);
-
 };
 
-// bereken de kosten voor een crop:getCostsForCrop
 const costsPerPlant = 1;
 
 const getCostsForCrop = (crops) => crops.numCrops * costsPerPlant;
 
-// bereken inkomsten voor een crop (zonder omgevingsfactoren): getRevenueForCrop
 const salesPrice = 2;
 
 const getRevenueForCrop = (crops, factors) => {
@@ -60,19 +57,17 @@ const getRevenueForCrop = (crops, factors) => {
   return parseFloat(revenue.toFixed(2));
 };
 
-// bereken de winst voor een crop (zonder omgevingsfactoren): getProfitForCrop
 const getProfitForCrop = (crops, factors) => {
   const revenuePerCrop = getRevenueForCrop(crops, factors);
   const costPerCrop = getCostsForCrop(crops);
   return revenuePerCrop - costPerCrop;
 };
-// bereken de winst voor meerdere crops (zonder omgevingsfactoren): getTotalProfit
-const getTotalProfit = (input) => {
+
+const getTotalProfit = (input, factors) => {
   const crops = input.crops;
-  const profit = crops.map((crop) => getProfitForCrop(crop));
+  const profit = crops.map((crop) => getProfitForCrop(crop, factors));
   return profit.reduce((acc, cur) => acc + cur);
 };
-
 
 module.exports = {
   getYieldForPlant,

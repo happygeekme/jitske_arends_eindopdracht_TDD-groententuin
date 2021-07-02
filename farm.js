@@ -35,15 +35,11 @@ const getYieldForCrop = (crops, factors) => {
       default:
         windInfluece = 1;
     }
-    console.log(basicCropYield)
-    console.log(sunInfluece)
-    console.log(windInfluece)
     return basicCropYield * sunInfluece * windInfluece;
   }
 };
 
 const getTotalYield = (input, factors) => {
-  console.log(factors)
   const crops = input.crops;
   const cropsYield = crops.map((crop) => getYieldForCrop(crop, factors));
   return cropsYield.reduce((acc, cur) => acc + cur);
@@ -61,12 +57,12 @@ const salesPrice = 2;
 const getRevenueForCrop = (crops, factors) => {
   const cropYield = getYieldForCrop(crops, factors);
   const revenue = cropYield * salesPrice;
-  return +(Math.round(revenue + "e+2") + "e-2");
+  return parseFloat(revenue.toFixed(2));
 };
 
 // bereken de winst voor een crop (zonder omgevingsfactoren): getProfitForCrop
-const getProfitForCrop = (crops) => {
-  const revenuePerCrop = getRevenueForCrop(crops);
+const getProfitForCrop = (crops, factors) => {
+  const revenuePerCrop = getRevenueForCrop(crops, factors);
   const costPerCrop = getCostsForCrop(crops);
   return revenuePerCrop - costPerCrop;
 };

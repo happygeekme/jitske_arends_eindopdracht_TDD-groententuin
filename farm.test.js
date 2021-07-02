@@ -409,3 +409,61 @@ describe("getRevenueforCrop considering enviromentFactors", () => {
     expect(getRevenueForCrop(input, environmentFactors)).toBe(60);
   });
 });
+
+describe("getProfitForCrop considering enviromentFactors", () => {
+  test("Calculate profit for corn considering enviromentFactors", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      }
+    };
+    const input = {
+      crop: corn,
+      numCrops: 10,
+    };
+    const environmentFactors = {
+      sun: "medium",
+      wind: "medium",
+    };
+    expect(getProfitForCrop(input, environmentFactors)).toBe(32);
+  });
+
+  test.only("Calculate profit for pumpkin considering enviromentFactors", () => {
+    const pumpkin = {
+      name: "pumpkin",
+      yield: 4,
+      factors: {
+        sun: {
+          low: -20,
+          medium: 0,
+          high: 30,
+        },
+        wind: {
+          low: 0,
+          medium: -10,
+          high: -20,
+        },
+      }
+    };
+    const input = {
+      crop: pumpkin,
+      numCrops: 2,
+    };
+    const environmentFactors = {
+      sun: "high",
+      wind: "low",
+    };
+    expect(getProfitForCrop(input, environmentFactors)).toBe(18.8);
+  });
+});

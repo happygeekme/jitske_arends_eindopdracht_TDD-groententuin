@@ -353,7 +353,7 @@ describe("getTotalYield considering enviromentFactors", () => {
 });
 
 describe("getRevenueforCrop considering enviromentFactors", () => {
-  test.only("Calculate revenue for corn", () => {
+  test("Calculate revenue for corn", () => {
     const corn = {
       name: "corn",
       yield: 3,

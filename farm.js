@@ -60,7 +60,8 @@ const salesPrice = 2;
 
 const getRevenueForCrop = (crops, factors) => {
   const cropYield = getYieldForCrop(crops, factors);
-  return cropYield * salesPrice;
+  const revenue = cropYield * salesPrice;
+  return +(Math.round(revenue + "e+2") + "e-2");
 };
 
 // bereken de winst voor een crop (zonder omgevingsfactoren): getProfitForCrop

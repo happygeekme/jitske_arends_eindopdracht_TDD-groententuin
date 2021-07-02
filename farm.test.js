@@ -351,3 +351,61 @@ describe("getTotalYield considering enviromentFactors", () => {
     expect(getTotalYield({ crops }, environmentFactors)).toBe(4.6);
   });
 });
+
+describe("getRevenueforCrop considering enviromentFactors", () => {
+  test.only("Calculate revenue for corn", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+    const input = {
+      crop: corn,
+      numCrops: 7,
+    };
+    const environmentFactors = {
+      sun: "high",
+      wind: "medium",
+    };
+    expect(getRevenueForCrop(input, environmentFactors)).toBe(44.1);
+  });
+
+  test("Calculate revenue for pumpkin", () => {
+    const pumpkin = {
+      name: "pumpkin",
+      yield: 4,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+      },
+    };
+    const input = {
+      crop: pumpkin,
+      numCrops: 5,
+    }
+    const environmentFactors = {
+      sun: "high",
+      wind: "low",
+    };
+    expect(getRevenueForCrop(input, environmentFactors)).toBe(60);
+  });
+});
